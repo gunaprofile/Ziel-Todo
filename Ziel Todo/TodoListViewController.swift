@@ -12,8 +12,17 @@ class TodoListViewController: UITableViewController {
     
     var itemArray = ["Raise PR for Bug ID", "DO code clean", "Compoenent changes for DNAC", "Do DNAC Setup"]
     
+    let defaults = UserDefaults.standard
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
+        if let item = defaults.array(forKey: "TodoListArray") as? [String]{
+            
+            itemArray = item
+            
+        }
     }
     
     // MARK - Table View Datasource Method
@@ -27,6 +36,7 @@ class TodoListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath)
+        
         cell.textLabel?.text = itemArray[indexPath.row]
         
         return cell
@@ -35,7 +45,6 @@ class TodoListViewController: UITableViewController {
     // MARK - Table View Deletegate Method
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       // print(itemArray[indexPath.row])
         
         if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark {
             
@@ -62,16 +71,16 @@ class TodoListViewController: UITableViewController {
             
             //What will happen when user clicks the add item button on UIAlert
             
-            print("Success!")
-            
             self.itemArray.append(textField.text!)
+            
+            self.defaults.setValue(self.itemArray, forKey: "TodoListArray")
             
             self.tableView.reloadData()
             
         }
         
         alert.addTextField { (alertTextField) in
-            alertTextField.placeholder="Enter New Item"
+            alertTextField.placeholder = "Enter New Item"
             textField = alertTextField
         }
         
