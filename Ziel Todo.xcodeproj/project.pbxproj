@@ -14,9 +14,13 @@
 		B6E56E9D20560955000E192C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6E56E9C20560955000E192C /* Assets.xcassets */; };
 		B6E56EA020560955000E192C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6E56E9E20560955000E192C /* LaunchScreen.storyboard */; };
 		B6E56EAF20579D04000E192C /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B6E56EAD20579D04000E192C /* DataModel.xcdatamodeld */; };
+		E6DB87EA2389848F2DD87CAD /* Pods_Ziel_Todo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E37A6C856E544C9D805413 /* Pods_Ziel_Todo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		32E37A6C856E544C9D805413 /* Pods_Ziel_Todo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ziel_Todo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		733A65D382C24C71AEA8D74F /* Pods-Ziel Todo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ziel Todo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ziel Todo/Pods-Ziel Todo.release.xcconfig"; sourceTree = "<group>"; };
+		9E11B4A0400E6AB0CE62A3A1 /* Pods-Ziel Todo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ziel Todo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ziel Todo/Pods-Ziel Todo.debug.xcconfig"; sourceTree = "<group>"; };
 		B652AE522058C92F00C46C89 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
 		B6E56E9220560955000E192C /* Ziel Todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ziel Todo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6E56E9520560955000E192C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -33,17 +37,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6DB87EA2389848F2DD87CAD /* Pods_Ziel_Todo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		37E3DC47223D14E425C6E2F8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				32E37A6C856E544C9D805413 /* Pods_Ziel_Todo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9F1005264EF9D1F9B03C23C5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9E11B4A0400E6AB0CE62A3A1 /* Pods-Ziel Todo.debug.xcconfig */,
+				733A65D382C24C71AEA8D74F /* Pods-Ziel Todo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		B6E56E8920560955000E192C = {
 			isa = PBXGroup;
 			children = (
 				B6E56E9420560955000E192C /* Ziel Todo */,
 				B6E56E9320560955000E192C /* Products */,
+				9F1005264EF9D1F9B03C23C5 /* Pods */,
+				37E3DC47223D14E425C6E2F8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -109,9 +133,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B6E56EA420560955000E192C /* Build configuration list for PBXNativeTarget "Ziel Todo" */;
 			buildPhases = (
+				EEA015924CABA6B4B6916A38 /* [CP] Check Pods Manifest.lock */,
 				B6E56E8E20560955000E192C /* Sources */,
 				B6E56E8F20560955000E192C /* Frameworks */,
 				B6E56E9020560955000E192C /* Resources */,
+				1B0711D886205FCDF6484A11 /* [CP] Embed Pods Frameworks */,
+				720E24647F24BEB51D9759A6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -168,6 +195,62 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1B0711D886205FCDF6484A11 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Ziel Todo/Pods-Ziel Todo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Ziel Todo/Pods-Ziel Todo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		720E24647F24BEB51D9759A6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Ziel Todo/Pods-Ziel Todo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EEA015924CABA6B4B6916A38 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Ziel Todo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B6E56E8E20560955000E192C /* Sources */ = {
@@ -312,6 +395,7 @@
 		};
 		B6E56EA520560955000E192C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9E11B4A0400E6AB0CE62A3A1 /* Pods-Ziel Todo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -327,6 +411,7 @@
 		};
 		B6E56EA620560955000E192C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 733A65D382C24C71AEA8D74F /* Pods-Ziel Todo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
