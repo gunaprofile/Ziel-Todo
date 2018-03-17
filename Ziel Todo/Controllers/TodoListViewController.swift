@@ -8,8 +8,11 @@
 
 import UIKit
 import RealmSwift
+import ChameleonFramework
 
-class TodoListViewController: UITableViewController{
+class TodoListViewController: SwipeTableViewController{
+    
+    @IBOutlet weak var searchBar: UISearchBar!
     
     var todoItems : Results<Item>?
     
@@ -29,9 +32,34 @@ class TodoListViewController: UITableViewController{
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        title = selectedCategory?.name
+        guard let colorHex = (selectedCategory?.color) else{ fatalError()}
+        updateNavBar(withHexCode: colorHex)
+    }
+    
+//    override func viewWillDisappear(_ animated: Bool) {
+//        updateNavBar(withHexCode: "0080FF")
+//    }
+    override func willMove(toParentViewController parent: UIViewController?) {
+        updateNavBar(withHexCode: "0080FF")
+    }
+
+    // MARK: - Navbar Method
+    func updateNavBar(withHexCode colorHexCode : String){
+        
+        guard let navBar = navigationController?.navigationBar else{
+            fatalError("Navigation Controller Doesn't exist.")
+        }
+        guard let navBarColor = UIColor(hexString : colorHexCode) else{ fatalError()}
+        navBar.barTintColor = navBarColor
+        navBar.tintColor = ContrastColorOf( navBarColor, returnFlat: true)
+        navBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : ContrastColorOf( navBarColor, returnFlat: true)]
+        searchBar.barTintColor = navBarColor
+        
+    }
     // MARK: - Table View Datasource Method
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -42,12 +70,17 @@ class TodoListViewController: UITableViewController{
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath)
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
         
         if  let currentItem = todoItems?[indexPath.row]{
         
             cell.textLabel?.text = currentItem.title
-            cell.accessoryType = currentItem.done ? .checkmark : .none
+            
+            if let colour = UIColor(hexString : (selectedCategory?.color)!)?.darken(byPercentage: CGFloat( CGFloat(indexPath.row) / CGFloat(todoItems!.count))){
+                cell.backgroundColor = colour
+                cell.textLabel?.textColor = ContrastColorOf(colour, returnFlat: true)
+                cell.accessoryType = currentItem.done ? .checkmark : .none
+            }
             
         }else{
             cell.textLabel?.text = "No Item added!"
@@ -82,7 +115,7 @@ class TodoListViewController: UITableViewController{
         let alert = UIAlertController(title: "Add New Todo Item", message: "", preferredStyle: .alert)
        let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
             if let currentCategory = self.selectedCategory {
-                if(textField.text?.isEmpty ?? false){
+              //  if(textField.text?.isEmpty ?? false){
                     do {
                         try self.realm.write {
                             let newItem = Item()
@@ -98,7 +131,7 @@ class TodoListViewController: UITableViewController{
                         print("Error on add new item \(error)")
                         
                     }
-                }
+               // }
             }
              self.tableView.reloadData()
         }
@@ -122,6 +155,24 @@ class TodoListViewController: UITableViewController{
 
         tableView.reloadData()
 
+    }
+    
+    // MARK: - Delete Data From Swipe
+    
+    override func updateModel(at indexPath: IndexPath) {
+        //super.updateModel(at: IndexPath)
+        if let itemForDeletion = self.todoItems?[indexPath.row] {
+            
+            do {
+                try self.realm.write {
+                    self.realm.delete(itemForDeletion)
+                }
+                
+            }catch {
+                print("Error in deleting item \(error)")
+                
+            }
+        }
     }
     
 }
