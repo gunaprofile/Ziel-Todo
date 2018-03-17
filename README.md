@@ -3,7 +3,7 @@
 
 # Ziel-Todo
 ### Table of Contents
-You're sections headers will be used to reference location of destination.
+Life can feel overwhelming, but it doesn't have to. Todo keeps track for everything - from simple errants to your most ambitious project - so you can get it all done and enjoy more pice of mind along the way
 
 - [Description](#description)
 - [How To Use](#how-to-use)
@@ -14,8 +14,6 @@ You're sections headers will be used to reference location of destination.
 ---
 
 ## Description
-
-Life can feel overwhelming, but it doesn't have to. Todo keeps track for everything - from simple errants to your most ambitious project - so you can get it all done and enjoy more pice of mind along the way
 
 Individual color todo list, on select one of them to go into that particular list and add new items to it. As you add new item you todo list take beautiful gradient, we can delete and search list of items.
 #### Technologies
